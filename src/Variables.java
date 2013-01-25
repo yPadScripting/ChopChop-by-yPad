@@ -14,7 +14,7 @@ import org.powerbot.game.api.wrappers.node.SceneObject;
 public class Variables {
 
     public final static int[] LOG_IDS = {1511, 1521};
-    public final static int[] HATCHET_IDS = {1351, 1349, 1353, 1361, 1355, 1357, 1358, 1359};
+    public final static int[] HATCHET_IDS = {1351, 1349, 1353, 1361, 1355, 1357, 1358, 1359, 13661, 6739, 13470};
     public final static int[] TREE_IDS = {38760, 1282, 1286, 1289, 47600, 38785, 38760, 47598};
     public static Filter<Item> LOG_FILTER = new Filter<Item>() {
 
