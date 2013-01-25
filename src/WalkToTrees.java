@@ -1,4 +1,3 @@
-package ChopChop;
 
 import org.powerbot.core.script.job.Task;
 import org.powerbot.core.script.job.state.Node;
@@ -9,6 +8,7 @@ import org.powerbot.game.api.methods.tab.Equipment;
 import org.powerbot.game.api.methods.tab.Inventory;
 import org.powerbot.game.api.util.Random;
 import org.powerbot.game.api.wrappers.Tile;
+import org.powerbot.game.bot.Context;
 
 /*
  * To change this template, choose Tools | Templates and open the template in
@@ -41,9 +41,15 @@ public class WalkToTrees extends Node {
 
     @Override
     public boolean activate() {
-        if (Players.getLocal() != null && !Chopping.atTrees() && !Inventory.isFull() && (Inventory.contains(Variables.HATCHET_IDS) || Equipment.containsOneOf(Variables.HATCHET_IDS))) {
-            return true;
+        if (Inventory.contains(Variables.HATCHET_IDS) || Equipment.containsOneOf(Variables.HATCHET_IDS)) {
+            if (Players.getLocal() != null && !Chopping.atTrees() && !Inventory.isFull()) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
+            System.out.println("Hatchet not found; start script with an axe in inventory or equipped!");
+            Context.get().getScriptHandler().stop();
             return false;
         }
     }

@@ -1,4 +1,3 @@
-package ChopChop;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -11,11 +10,13 @@ import org.powerbot.core.script.job.state.Node;
 import org.powerbot.game.api.methods.Walking;
 import org.powerbot.game.api.methods.interactive.Players;
 import org.powerbot.game.api.methods.node.SceneEntities;
+import org.powerbot.game.api.methods.tab.Equipment;
 import org.powerbot.game.api.methods.tab.Inventory;
 import org.powerbot.game.api.methods.widget.Camera;
 import org.powerbot.game.api.wrappers.Area;
 import org.powerbot.game.api.wrappers.Tile;
 import org.powerbot.game.api.wrappers.node.SceneObject;
+import org.powerbot.game.bot.Context;
 
 /*
  * To change this template, choose Tools | Templates and open the template in
@@ -41,10 +42,15 @@ public class Chopping extends Node {
 
     @Override
     public boolean activate() {
-        if (Players.getLocal() != null && !Inventory.isFull() && atTrees() && Players.getLocal().isIdle()) {
-
-            return true;
+        if (Inventory.contains(Variables.HATCHET_IDS) || Equipment.containsOneOf(Variables.HATCHET_IDS)) {
+            if (Players.getLocal() != null && !Inventory.isFull() && atTrees() && Players.getLocal().isIdle()) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
+            System.out.println("Hatchet not found; start script with an axe in inventory or equipped!");
+            Context.get().getScriptHandler().stop();
             return false;
         }
     }
