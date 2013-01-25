@@ -42,7 +42,6 @@ public class ChopChop extends ActiveScript implements PaintListener, MouseListen
     Image hidebuttonenabled = getImage("http://i50.tinypic.com/a08p4x.jpg");
     Image hidebuttondisabled = getImage("http://i50.tinypic.com/16i6wz4.jpg");
     Rectangle hidebutton = new Rectangle(497, 395, 20, 20);
-    Point p;
     Font font1 = new Font("Verdana", 0, 20);
     Timer runTime = new Timer(0);
     private int logs;
@@ -64,7 +63,7 @@ public class ChopChop extends ActiveScript implements PaintListener, MouseListen
         System.out.println("Looking to upgrade to: more locations with more trees!");
         System.out.println("Chop away!");
     }
-    
+
     @Override
     public void onStop() {
         System.out.println("The bot has cut " + logs + " amount of logs!");
@@ -109,33 +108,25 @@ public class ChopChop extends ActiveScript implements PaintListener, MouseListen
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        p = e.getPoint();
-        if (hidebutton.contains(p) && !hide) {
-            hide = true;
-        } else if (hidebutton.contains(p) && hide) {
-            hide = false;
+        if (hidebutton.contains(Mouse.getLocation())) {
+            hide = !hide;
         }
-
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @SuppressWarnings("serial")
